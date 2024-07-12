@@ -1,7 +1,9 @@
 // su dung singleton
-
+// cach ket noi su dung class chi ket noi 1 lan duy nhat va ko tao them ket noi nao nua
 const mongoose = require('mongoose');
+const { countConnect } = require('../helpers/check.connect');
 const connectString = "mongodb://localhost:27017/shopDev";
+
 class Database {
     constructor() {
         this.connect();
@@ -13,7 +15,7 @@ class Database {
         }
         
         mongoose.connect(connectString)
-        .then(_ => console.log(`connect mongodb success PRO`))
+        .then(_ => console.log(`connect mongodb success PRO`,countConnect()))
         .catch(err => console.log(`error connect !`));
     }
     static getInstance() {

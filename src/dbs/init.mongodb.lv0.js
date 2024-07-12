@@ -7,7 +7,10 @@ const mongoose = require('mongoose');
 const connectString = "mongodb://localhost:27017/shopDev";
 
 mongoose.connect(connectString)
-        .then(_ => console.log("successfully connected mongodb"))
+        .then(_ => {
+            console.log("successfully connected mongodb");
+            
+        })
         .catch(err => console.log(`error connect`));
 
 if (1 === 1) {
