@@ -6,11 +6,11 @@ const compression = require('compression');
 const { checkOverLoad } = require('./helpers/check.connect');
 const app = express();
 
-console.log(`Process:::`,process.env);
 // init middlewares
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(compression());
+
 
 // init db
 require('./dbs/init.mongodb');
@@ -19,11 +19,9 @@ require('./dbs/init.mongodb');
 
 
 // init routes
-app.get('/',(req,res,next) => {
-    return res.status(200).json({
-        message : 'hello bro'
-    })
-})
+app.use('/',require('./routes'));
+
+
 
 // handling errors
 
