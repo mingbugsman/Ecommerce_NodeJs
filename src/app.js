@@ -6,6 +6,9 @@ const compression = require('compression');
 const { checkOverLoad } = require('./helpers/check.connect');
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 // init middlewares
 app.use(morgan('dev'));
 app.use(helmet());
