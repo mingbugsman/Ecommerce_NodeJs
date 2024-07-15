@@ -2,17 +2,17 @@
 
 const keyTokenModel = require("../models/keyToken.model");
 
-// hàm tạo token
+// hàm tạo keytoken
 
 class KeyTokenService {
     static createKeyToken = async ({userid,publicKey}) => {
         try {
             const publicKeyString = publicKey.toString();
-            const tokens = await keyTokenModel.create({
+            const keytokens = await keyTokenModel.create({
                 user : userid,
                 publicKey : publicKeyString
             });
-            return tokens ? publicKeyString : null;
+            return keytokens ? keytokens.publicKey : null;
         } 
         catch (error) {
             return error;
