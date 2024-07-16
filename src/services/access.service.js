@@ -34,22 +34,14 @@ class AccessService {
             if (newShop) { // create token
 
                 // created private key :: dua cho nguoi dung de sign, public key ::: verify nguoi dung
-                const {privateKey, publicKey} = crypto.generateKeyPairSync('rsa', {
-                    modulusLength : 4096,
-                    publicKeyEncoding : {
-                        type : 'pkcs1', //public key cryptoGraphy standards
-                        format :'pem'
-                    },
-                    privateKeyEncoding : {
-                        type : 'pkcs1',
-                        format : 'pem'
-                    }
-                });
-
+                const privateKey= crypto.randomBytes(64).toString('hex');
+                const publicKey = crypto.randomBytes(64).toString('hex');
+                console.log(privateKey,publicKey);
              // save it in collection key store
                 const publicKeyString = await KeyTokenService.createKeyToken({
                     userid : newShop._id,
-                    publicKey
+                    publicKey,
+                    privateKey
                 });
                 if (!publicKeyString) {
                     return {
@@ -58,11 +50,9 @@ class AccessService {
                     };
                 }
                 
-                const publicKeyObject = crypto.createPublicKey(publicKeyString);
-                console.log(publicKeyObject);
                 // có public key string thì tạo key token
                 const tokens =  await createTokenPair({userId : newShop._id, email}, 
-                                                       publicKeyObject,
+                                                       publicKey,
                                                        privateKey);
                 console.log(`created token success`, tokens);
                 return {
