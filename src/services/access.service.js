@@ -38,15 +38,15 @@ class AccessService {
                 const publicKey = crypto.randomBytes(64).toString('hex');
                 console.log(privateKey,publicKey);
              // save it in collection key store
-                const publicKeyString = await KeyTokenService.createKeyToken({
+                const KeyStore = await KeyTokenService.createKeyToken({
                     userid : newShop._id,
                     publicKey,
                     privateKey
                 });
-                if (!publicKeyString) {
+                if (!KeyStore) {
                     return {
                         code : 'xxxx',
-                        message : 'publicKeyString error'
+                        message : 'keystore error'
                     };
                 }
                 
