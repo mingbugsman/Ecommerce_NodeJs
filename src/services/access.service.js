@@ -33,7 +33,7 @@ class AccessService {
             })
             if (newShop) { // create token
 
-                // created private key :: dua cho nguoi dung de sign, public key ::: verify nguoi dung
+                // created private key :: cho refresh token, public key ::: cho access token
                 const privateKey= crypto.randomBytes(64).toString('hex');
                 const publicKey = crypto.randomBytes(64).toString('hex');
                 console.log(privateKey,publicKey);
@@ -50,7 +50,7 @@ class AccessService {
                     };
                 }
                 
-                // có public key string thì tạo key token
+                // có public key string tức là đã tạo hoàn tất thì tạo key token
                 const tokens =  await createTokenPair({userId : newShop._id, email}, 
                                                        publicKey,
                                                        privateKey);
