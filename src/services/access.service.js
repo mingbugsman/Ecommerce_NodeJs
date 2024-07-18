@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const KeyTokenService = require("./keyToken.service");
 const { createTokenPair } = require("../auth/authUtils");
 const { getInfoData } = require("../utils");
+const { BadRequestError } = require("../middleware/core/error.response");
 
 const ROLE_SHOP = {
     SHOP : 'SHOP',
@@ -16,16 +17,11 @@ const ROLE_SHOP = {
 
 class AccessService {
 
-    static signUp = async ({nameshop, email, password}) => {
-        try {
-
-            // buoc 1 : check email exists ???
+    static signUp = async ({nameshop, email, password}) => {    
+        // buoc 1 : check email exists ???
             const holderShop = await shopModel.findOne({email}).lean(); // sped up query cuz it returns original obj js
             if (holderShop) {
-                return {
-                    code : 'xxxx',
-                    message : 'Shop already registered'
-                }
+                throw new BadRequestError("Shop already exists")
             }
             const _HASHpassWORD = await bcrypt.hash(password,10);
             const newShop = await shopModel.create({
@@ -44,10 +40,7 @@ class AccessService {
                     privateKey
                 });
                 if (!KeyStore) {
-                    return {
-                        code : 'xxxx',
-                        message : 'keystore error'
-                    };
+                    throw new BadRequestError("KeyStore Error");
                 }
                 
                 // có public key string tức là đã tạo hoàn tất thì tạo key token
@@ -68,14 +61,6 @@ class AccessService {
                 code : 200,
                 metadata : null
             }
-
-        } catch (error) {
-            return {
-                code : 'xxx',
-                message : error.message,
-                status : 'error'
-            }
-        }
     }
 }
 
