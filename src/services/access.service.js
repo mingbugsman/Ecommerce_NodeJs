@@ -20,6 +20,12 @@ const ROLE_SHOP = {
 };
 
 class AccessService {
+  static logout = async (KeyStore) => {
+    const isDeleted = await KeyTokenService.removeKeybyId(KeyStore._id);
+    console.log(isDeleted);
+    return isDeleted; 
+  }
+
   static login = async ({ email, password, refreshToken = null }) => {
     const foundShop = await findByEmail({ email });
     if (!foundShop) throw new BadRequestError("shop not registered");

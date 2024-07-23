@@ -7,8 +7,25 @@ x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c6
 
 {
     "nameshop" : "SHOP TUAN MINH",
-    "email" : "ming1838007@gmail.com",
+    "email" : "ming18380@gmail.com",
     "password" : "deptraiso1"
 }
+
+###
+POST {{url_dev}}/shop/login
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+
+{
+    "email" : "ming18380@gmail.com",
+    "password" : "deptraiso1"
+}
+
+###
+POST {{url_dev}}/shop/logout
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+x-client-id : 669f5d4727b4473ceb3ef925
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmNWQ0NzI3YjQ0NzNjZWIzZWY5MjUiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjE3MjU3NDAsImV4cCI6MTcyMTg5ODU0MH0.IMOtIXasWbnk7ZqmUxODzWPxQgGZbQOp5oqNpR1aCt8
 
 

@@ -1,5 +1,6 @@
 'use strict'
 
+const { Types : {ObjectId} } = require("mongoose");
 const keyTokenModel = require("../models/keyToken.model");
 
 // hàm tạo keytoken
@@ -18,6 +19,10 @@ class KeyTokenService {
         catch (error) {
             return error;
         }
+    }
+    static removeKeybyId = async (id) => {
+        console.log(id);
+        return await keyTokenModel.deleteOne({_id : new ObjectId(id)} );
     }
 }
 
