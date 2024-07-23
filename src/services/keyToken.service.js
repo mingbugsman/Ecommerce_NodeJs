@@ -5,14 +5,15 @@ const keyTokenModel = require("../models/keyToken.model");
 // hàm tạo keytoken
 
 class KeyTokenService {
-    static createKeyToken = async ({userid,publicKey,privateKey}) => {
+    static createKeyToken = async ({userid,publicKey,privateKey, refreshToken}) => {
         try {
-            const KeyStore = await keyTokenModel.create({
-                user : userid,
-                publicKey : publicKey,
-                privateKey : privateKey
-            });
-            return KeyStore ? KeyStore : null;
+            const filter = {user: userid};
+            const update = { publicKey, privateKey, refreshTokenUsed : [], refreshToken };
+            const options = {upsert : true, new : true};
+
+            const tokens = await keyTokenModel.findOneAndUpdate(filter,update,options);
+
+            return tokens ? tokens.publicKey : null;
         } 
         catch (error) {
             return error;
