@@ -1,5 +1,6 @@
 "use strict";
 
+
 const shopModel = require("../models/shop.model");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
@@ -12,6 +13,8 @@ const {
   FORBIDDENERROR,
 } = require("../middleware/core/error.response");
 const { findByEmail } = require("./shop.service");
+
+
 
 const ROLE_SHOP = {
   SHOP: "SHOP",
@@ -29,25 +32,38 @@ class AccessService {
     if (foundToken) {
       // decoded
       const {userId, email} = await verifyJWT(refreshToken, foundToken.privateKey);
-      console.log(userId,email);
+      console.log("[1]---",userId,email);
       await KeyTokenService.deleteKeyById(userId);
       throw new FORBIDDENERROR('Something happens !!!! pls reload again');
     }
-    const holderShop = await KeyTokenService.findByRefreshToken(refreshToken);
-    if (!holderShop) throw new AuthFailureError("Shop doesn't register"); 
+    const holderToken = await KeyTokenService.findByRefreshToken(refreshToken);
+    console.log(holderToken);
+    if (!holderToken) throw new AuthFailureError("Shop doesn't register"); 
     
-    const {userId, email} = await verifyJWT(refreshToken, holderShop.privateKey);
-    const foundShop = await findByEmail(email);
+    const {userId, email} = await verifyJWT(refreshToken, holderToken.privateKey);
+    console.log(email);
+    const foundShop = await findByEmail({email});
     if (!foundShop) throw new AuthFailureError("Shop doesn't register"); 
 
     const tokens = await createTokenPair(
       { userId, email },
-      holderShop.publicKey,
-      holderShop.privateKey
+      holderToken.publicKey,
+      holderToken.privateKey
     );
 
     // update token
-    
+    await holderToken.updateOne({
+      $set : {
+        refreshToken : tokens.refreshToken
+      },
+      $addToSet : {
+        refreshTokenUsed : refreshToken
+      }
+    });
+    return {
+      user : {userId, email},
+      tokens
+    }
   }
 
   static logout = async (KeyStore) => {
