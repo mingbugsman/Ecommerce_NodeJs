@@ -2,8 +2,8 @@
 const JWT = require("jsonwebtoken");
 const asyncHandler = require("../helpers/asyncHandler");
 const { AuthFailureError, NOTFOUNDERROR } = require("../middleware/core/error.response");
-const keyTokenModel = require("../models/keyToken.model");
 const mongoose = require("mongoose");
+const KeyTokenService = require("../services/keyToken.service");
 
 const HEADERS = {
     API_KEY :'x-api-key',
@@ -47,13 +47,11 @@ const authentication = asyncHandler(async (req,res,next) => {
     5- check keystore with this user id
     6- if ok return next
     */
-
    //1
    const iduser = req.headers[HEADERS.CLIENT_ID];
    if (!iduser) throw new AuthFailureError("Invalid request");
    //2
-   const objectIDString = new mongoose.Types.ObjectId(iduser);
-   const keyStore = await keyTokenModel.findOne({user : objectIDString }).lean();
+   const keyStore = await KeyTokenService.findbyId(iduser);
    if (!keyStore) {
     throw new NOTFOUNDERROR("Invalid request");
    }
@@ -79,6 +77,11 @@ const authentication = asyncHandler(async (req,res,next) => {
    }
 
 })
+
+
+const verifyJWT = async (token, keySecret) => {
+    return JWT.verify(token,keySecret);
+}
 
 module.exports = {
     createTokenPair, authentication

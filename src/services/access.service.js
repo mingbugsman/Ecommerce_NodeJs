@@ -4,11 +4,12 @@ const shopModel = require("../models/shop.model");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const KeyTokenService = require("./keyToken.service");
-const { createTokenPair } = require("../auth/authUtils");
+const { createTokenPair, verifyJWT } = require("../auth/authUtils");
 const { getInfoData } = require("../utils");
 const {
   BadRequestError,
   AuthFailureError,
+  FORBIDDENERROR,
 } = require("../middleware/core/error.response");
 const { findByEmail } = require("./shop.service");
 
@@ -20,6 +21,35 @@ const ROLE_SHOP = {
 };
 
 class AccessService {
+  /*
+    check token is used
+  */
+  static handlerRefreshToken = async ({refreshToken}) => {
+    const foundToken = await KeyTokenService.findByRefreshTokenUsed(refreshToken);
+    if (foundToken) {
+      // decoded
+      const {userId, email} = await verifyJWT(refreshToken, foundToken.privateKey);
+      console.log(userId,email);
+      await KeyTokenService.deleteKeyById(userId);
+      throw new FORBIDDENERROR('Something happens !!!! pls reload again');
+    }
+    const holderShop = await KeyTokenService.findByRefreshToken(refreshToken);
+    if (!holderShop) throw new AuthFailureError("Shop doesn't register"); 
+    
+    const {userId, email} = await verifyJWT(refreshToken, holderShop.privateKey);
+    const foundShop = await findByEmail(email);
+    if (!foundShop) throw new AuthFailureError("Shop doesn't register"); 
+
+    const tokens = await createTokenPair(
+      { userId, email },
+      holderShop.publicKey,
+      holderShop.privateKey
+    );
+
+    // update token
+    
+  }
+
   static logout = async (KeyStore) => {
     const isDeleted = await KeyTokenService.removeKeybyId(KeyStore._id);
     console.log(isDeleted);
@@ -28,11 +58,11 @@ class AccessService {
 
   static login = async ({ email, password, refreshToken = null }) => {
     const foundShop = await findByEmail({ email });
-    if (!foundShop) throw new BadRequestError("shop not registered");
-
+    if (!foundShop) throw new BadRequestError("shop doesn't register");
+    // Found One
     const match = bcrypt.compare(password, foundShop.password);
-    if (!match) throw new AuthFailureError("Authentication error");
-
+    if (!match) throw new AuthFailureError("Password incorrect");
+    // Match !!!
     const privateKey = crypto.randomBytes(64).toString("hex");
     const publicKey = crypto.randomBytes(64).toString("hex");
 

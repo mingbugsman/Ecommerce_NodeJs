@@ -20,9 +20,15 @@ class KeyTokenService {
             return error;
         }
     }
-    static removeKeybyId = async (id) => {
-        console.log(id);
-        return await keyTokenModel.deleteOne({_id : new ObjectId(id)} );
+    static findbyId = async (userId) => {
+        return await keyTokenModel.findOne({user : new ObjectId(userId)}).lean();
+    }
+    static removeKeybyId = async (keyId) => {
+        return await keyTokenModel.deleteOne({_id : new ObjectId(keyId)} );
+    }
+
+    static findByRefreshToken = async ( refreshToken ) => {
+        return await keyTokenModel.findOne( {refreshTokenUsed : refreshToken});
     }
 }
 

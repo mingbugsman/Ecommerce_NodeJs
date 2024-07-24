@@ -51,10 +51,16 @@ class NOTFOUNDERROR extends ErrorResponse {
     super(message,status);
   }
 }
+class FORBIDDENERROR extends ErrorResponse {
+  constructor(message = reasonPhrases.FORBIDDEN, stauts = statusCodes.FORBIDDEN) {
+    super(message,stauts)
+  }
+}
 
 module.exports = {
   ConflictRequestError,
   BadRequestError,
   AuthFailureError,
-  NOTFOUNDERROR
+  NOTFOUNDERROR,
+  FORBIDDENERROR
 };
