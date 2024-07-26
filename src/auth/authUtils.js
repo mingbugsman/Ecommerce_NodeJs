@@ -49,16 +49,16 @@ const authentication = asyncHandler(async (req,res,next) => {
     */
    //1
    const iduser = req.headers[HEADERS.CLIENT_ID];
-   if (!iduser) throw new AuthFailureError("Invalid request");
+   if (!iduser) throw new AuthFailureError("Invalid request headers client id");
    //2
    const keyStore = await KeyTokenService.findbyId(iduser);
    if (!keyStore) {
-    throw new NOTFOUNDERROR("Invalid request");
+    throw new NOTFOUNDERROR("Invalid request no keystore");
    }
 
    //3 
    const accessToken = req.headers[HEADERS.AUTHORIZATION];
-   if (!accessToken) throw new AuthFailureError("Invalid Request");
+   if (!accessToken) throw new AuthFailureError("Invalid Request no accesstoken");
 
 
 
