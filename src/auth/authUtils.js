@@ -64,12 +64,12 @@ const authentication = asyncHandler(async (req,res,next) => {
 
    try {
 
-        const {userId} = JWT.verify(accessToken, keyStore.publicKey);
+        const decodedUser = JWT.verify(accessToken, keyStore.publicKey);
         
-        if (iduser !== userId) throw new AuthFailureError("Invalid UserId");
+        if (iduser !== decodedUser.userId) throw new AuthFailureError("Invalid UserId");
 
         req.keyStore = keyStore;
-
+        req.user = decodedUser
         return next();
 
    } catch (error) {

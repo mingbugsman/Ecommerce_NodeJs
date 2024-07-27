@@ -47,16 +47,16 @@ x-client-id : 669f804f4b16a95c37bec2cc
 authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjIwMTAwMjcsImV4cCI6MTcyMjE4MjgyN30.jEb0CWoeRM-3S73B4me12BJKfEy7vrfBm8t6hb0ffBo
 
 {
-    "product_name": "New Jeans",
-    "product_description": "High-quality denim jeans",
-    "product_price": 50,
+    "product_name": "Áo phông mát lạnh mùa hè",
+    "product_description": "Chất lượng cao giá rẻ, mặc vào là mát rượi tới hè 50 năm sau",
+    "product_price": 300,
     "product_shop": "669f804f4b16a95c37bec2cc",
     "product_type": "Clothing",
     "product_thumbal": "product_thumb",
-    "product_quantity": 5,
+    "product_quantity": 299999,
     "product_attributes": {
-        "brand": "Levi's",
-        "size": "L",
-        "material": "Denim"
+        "brand": "TuanMinh's MITH",
+        "size": "XL",
+        "material": "platinum"
     } 
 }

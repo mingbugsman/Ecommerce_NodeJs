@@ -10,9 +10,12 @@ class ProductController {
         console.log(req.body);
         new SuccessResponse({
             message : 'Successfully create new Product',
-            metadata : await ProductService.createProduct(req.body.product_type,req.body)
+            metadata : await ProductService.createProduct(req.body.product_type,{
+                ...req.body, 
+                product_shop : req.user.userId
+            })
         }).send(res);
     }
 };
 
-module.exports = new ProductController()
+ module.exports = new ProductController()
