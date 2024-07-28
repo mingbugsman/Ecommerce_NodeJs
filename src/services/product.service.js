@@ -40,10 +40,9 @@ class Product {
     product_quantity,
     product_attributes,
   }) {
-    console.log(product_type);
     (this.product_name = product_name),
-      (this.product_price = product_price),
-      (this.product_thumbal = product_thumbal);
+    (this.product_price = product_price),
+    (this.product_thumbal = product_thumbal);
     this.product_description = product_description;
     this.product_type = product_type;
     this.product_quantity = product_quantity;

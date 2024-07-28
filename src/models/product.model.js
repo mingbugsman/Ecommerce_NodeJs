@@ -1,5 +1,6 @@
 const { type } = require("express/lib/response");
 const { model, Schema } = require("mongoose");
+const slugify = require('slugify');
 
 const DOCUMENT_NAME = "Product";
 const COLLECTION_NAME = "Products";
@@ -9,6 +10,7 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
+  product_slug : String,
   product_price: {
     type: Number,
     required: true,
@@ -36,11 +38,36 @@ const productSchema = new Schema({
   product_attributes : {
     type : Schema.Types.Mixed,
     required: true
+  },
+  product_ratingAverage : {
+    type : Number,
+    default : 4.5,
+    min : [1,"rating must be above 1"],
+    max : [5, "rating must be under 5.0"],
+    set : (val) => Math.round(val*10)/10
+  },
+  product_variations : {
+    type : Array,
+    default : []
+  },
+  isDraft : {
+    type : Boolean, default : true, index : true, select:false
+  },
+  isPublish : {
+    type : Boolean, default : false, index : true, select : false
   }
-}, {
+}
+
+, {
     timestamps : true,
     collection : COLLECTION_NAME
 });
+/*---before save --*/
+productSchema.pre('save', function(next) {
+  this.product_slug = slugify(this.product_name, {lower : true});
+  next();
+})
+
 
 // define the product type = clothing
 
