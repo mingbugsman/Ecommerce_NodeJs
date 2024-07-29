@@ -44,18 +44,33 @@ POST {{url_dev}}product
 Content-Type: application/json
 x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
 x-client-id : 669f804f4b16a95c37bec2cc
-authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjIwMTAwMjcsImV4cCI6MTcyMjE4MjgyN30.jEb0CWoeRM-3S73B4me12BJKfEy7vrfBm8t6hb0ffBo
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjIyNjMwMzMsImV4cCI6MTcyMjQzNTgzM30.BvrlP7s-AaOlz6UaASuYkFfM7LAp8OlAFRuQ7Av7i6I
 
 {
     "product_name": "Quần jean tươi đẹp",
-    "product_description": "Chất lượng cao giá rẻ, mặc vào là mát rượi tới hè 50 năm sau",
-    "product_price": 300,
+    "product_description": "Đồng hồ đeo tay sành điệu cực vjp pro",
+    "product_price": 5000,
     "product_type": "Clothing",
     "product_thumbal": "product_thumb",
-    "product_quantity": 299999,
+    "product_quantity": 32000,
     "product_attributes": {
         "brand": "TuanMinh's MITH",
         "size": "XL",
         "material": "Black Hole"
     } 
 }
+
+###
+GET {{url_dev}}product/drafts
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+x-client-id : 669f804f4b16a95c37bec2cc
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjIyNjMwMzMsImV4cCI6MTcyMjQzNTgzM30.BvrlP7s-AaOlz6UaASuYkFfM7LAp8OlAFRuQ7Av7i6I
+
+
+###
+GET {{url_dev}}product/Pulish
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+x-client-id : 669f804f4b16a95c37bec2cc
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjIyNjMwMzMsImV4cCI6MTcyMjQzNTgzM30.BvrlP7s-AaOlz6UaASuYkFfM7LAp8OlAFRuQ7Av7i6I
