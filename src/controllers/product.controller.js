@@ -27,6 +27,17 @@ class ProductController {
         }).send(res);
     }
 
+    UnpublishProductByShop = async (req,res,next) => {
+        console.log(req.body);
+        new SuccessResponse({
+            message : 'Successfully Unpublish new Product',
+            metadata : await ProductService.UnpublishProductByShop({
+                product_id : req.params.id,
+                product_shop : req.user.userId
+            })
+        }).send(res);
+    }
+
     ////QUERY
 
     /**
@@ -42,13 +53,19 @@ class ProductController {
         }).send(res);
     }
 
-    getAllPulishForShop = async ( req, res,next) => {
+    getAllPublishForShop = async ( req, res,next) => {
         new SuccessResponse({
             message : "Successfully get all drafts for shop",
             metadata : await ProductService.findAllPublishForShop({product_shop : req.user.userId})
         }).send(res);
     }
 
+    getListSearchProduct = async ( req, res,next) => {
+        new SuccessResponse({
+            message : "Successfully get all list for shop",
+            metadata : await ProductService.searchProducts(req.params)
+        }).send(res);
+    }
 
     /// END QUERY ///
 };

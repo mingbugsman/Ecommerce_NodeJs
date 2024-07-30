@@ -59,6 +59,20 @@ authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjR
         "material": "Black Hole"
     } 
 }
+###
+POST {{url_dev}}product/publish/66a7a6811209ed4595991150
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+x-client-id : 669f804f4b16a95c37bec2cc
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjIyNjMwMzMsImV4cCI6MTcyMjQzNTgzM30.BvrlP7s-AaOlz6UaASuYkFfM7LAp8OlAFRuQ7Av7i6I
+
+###
+POST {{url_dev}}product/Unpublish/66a7a6811209ed4595991150
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+x-client-id : 669f804f4b16a95c37bec2cc
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjIyNjMwMzMsImV4cCI6MTcyMjQzNTgzM30.BvrlP7s-AaOlz6UaASuYkFfM7LAp8OlAFRuQ7Av7i6I
+
 
 ###
 GET {{url_dev}}product/drafts
@@ -69,8 +83,14 @@ authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjR
 
 
 ###
-GET {{url_dev}}product/Pulish
+GET {{url_dev}}product/Publish
 Content-Type: application/json
 x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
 x-client-id : 669f804f4b16a95c37bec2cc
 authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjIyNjMwMzMsImV4cCI6MTcyMjQzNTgzM30.BvrlP7s-AaOlz6UaASuYkFfM7LAp8OlAFRuQ7Av7i6I
+
+
+###
+GET {{url_dev}}product/search/dong
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372

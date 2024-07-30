@@ -11,8 +11,8 @@ router.use(apiKey);
 router.use(checkPermission('0000'))
 
 // SAU KHI CHECK THÌ CHECK CHO NGƯỜI DÙNG
-router.use('/v1/api', require('./access'))
-router.use('/v1/api/product', require('./product'));
 
+router.use('/v1/api/product', require('./product'));
+router.use('/v1/api', require('./access'))
 
 module.exports = router;

@@ -8,7 +8,7 @@ const {
 } = require("../models/product.model");
 
 const { BadRequestError } = require("../middleware/core/error.response");
-const { findAllDraftsForShop,findAllPublishsForShop , publishProductByShop } = require("../models/repositories/product.repo");
+const { findAllDraftsForShop,findAllPublishsForShop , publishProductByShop,UnpublishProductByShop, searchProductbyUser } = require("../models/repositories/product.repo");
 // define factory class to create product
 
 class ProductFactory {
@@ -42,8 +42,14 @@ class ProductFactory {
   static async publishProductByShop({product_shop,product_id}) {
     return await publishProductByShop({product_shop,product_id});
   }
+  static async UnpublishProductByShop({product_shop,product_id}) {
+    return await UnpublishProductByShop({product_shop,product_id});
+  }
   /// END PUT
 
+  static async searchProducts({keySearch}) {
+    return await searchProductbyUser({keySearch})
+  }
 }
 
 // define base Product class
