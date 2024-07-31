@@ -46,6 +46,23 @@ class ProductController {
      * @param {Number} skip 
      * @param {JSON} res 
      */
+    findAllProducts = async (req,res,next) => {
+        console.log(req.query);
+        new SuccessResponse({
+            message : "Successfully find all products",
+            metadata : await ProductService.findAllProducts(req.query)
+        }).send(res)
+    }
+    findProduct = async (req,res,next) => {
+        console.log("this is my params:::",req.params);
+        new SuccessResponse({
+            message : "Successfully find one products",
+            metadata : await ProductService.findProduct({
+                product_id : req.params.product_id
+            })
+        }).send(res)
+    }
+
     getAllDraftsForShop = async ( req, res,next) => {
         new SuccessResponse({
             message : "Successfully get all drafts for shop",
@@ -55,7 +72,7 @@ class ProductController {
 
     getAllPublishForShop = async ( req, res,next) => {
         new SuccessResponse({
-            message : "Successfully get all drafts for shop",
+            message : "Successfully get all publish for shop",
             metadata : await ProductService.findAllPublishForShop({product_shop : req.user.userId})
         }).send(res);
     }
