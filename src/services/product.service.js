@@ -145,11 +145,12 @@ class Clothing extends Product {
      //2 check xem update o cho nao
      if (objectParams.product_attributes) {
       // update child
-        await updateProductbyId({productId, payload : updateNestedObjectParser(objectParams.product_attributes) , model : clothingModel});
+      console.log("productid:::",productId);      
+        await updateProductbyId({ product_id : productId, payload : updateNestedObjectParser(objectParams.product_attributes) , model : clothingModel});
      }
 
      const updatedProduct = await super.updateProduct(productId, updateNestedObjectParser(objectParams));
-     console.log(updatedProduct);
+    // console.log(updatedProduct);
      return updatedProduct;
 
   }

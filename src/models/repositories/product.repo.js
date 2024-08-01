@@ -90,7 +90,7 @@ const updateProductbyId = async ({
   product_id, payload, model, isNew = true
 }) => {
   console.log("parameters:::",product_id, payload, model);
-  await model.findByIdAndUpdate(product_id,payload, {new : isNew});
+  return await model.findByIdAndUpdate(product_id,payload, {new : isNew});
 }
 
 module.exports = {
