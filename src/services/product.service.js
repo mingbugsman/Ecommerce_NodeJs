@@ -15,8 +15,10 @@ const {
   UnpublishProductByShop,
   searchProductbyUser,
   findAllProducts,
-  findProduct
+  findProduct,
+  updateProductbyId
 } = require("../models/repositories/product.repo");
+const { removeUndefinedObject, updateNestedObjectParser } = require("../utils");
 // define factory class to create product
 
 class ProductFactory {
@@ -35,12 +37,12 @@ class ProductFactory {
     }
   }
 
-  static async updateProduct(type, payload) {
+  static async updateProduct(type, product_id, payload) {
     switch (type) {
       case "Electronic":
-        return new Electronic(payload).createProduct();
+        return new Electronic(payload).updateProduct(product_id);
       case "Clothing":
-        return new Clothing(payload).createProduct();
+        return new Clothing(payload).updateProduct(product_id);
       default:
         throw new BadRequestError("Invalid Product", type);
     }
@@ -113,6 +115,11 @@ class Product {
   async createProduct(product_id) {
     return await productModel.create({ ...this, _id: product_id });
   }
+
+  // update Product
+  async updateProduct(product_id, data) {
+    return await updateProductbyId({ product_id : product_id, payload : data, model : productModel} )
+  }
 }
 
 // define sub-class for different product types
@@ -129,6 +136,23 @@ class Clothing extends Product {
     if (!newProduct) throw new BadRequestError("create new Product error");
     return newProduct;
   }
+  async updateProduct(productId) {
+    /*
+    */
+     //1 remove attribute has null underfined
+     const objectParams = this;
+     console.log(objectParams)
+     //2 check xem update o cho nao
+     if (objectParams.product_attributes) {
+      // update child
+        await updateProductbyId({productId, payload : updateNestedObjectParser(objectParams.product_attributes) , model : clothingModel});
+     }
+
+     const updatedProduct = await super.updateProduct(productId, updateNestedObjectParser(objectParams));
+     console.log(updatedProduct);
+     return updatedProduct;
+
+  }
 }
 
 class Electronic extends Product {
@@ -142,6 +166,21 @@ class Electronic extends Product {
     const newProduct = await super.createProduct(newElectronic._id);
     if (!newProduct) throw new BadRequestError("create new Product error");
     return newProduct;
+  }
+  async updateProduct(productId) {
+    /*
+    */
+     //1 remove attribute has null underfined
+     const objectParams = removeUndefinedObject(this);
+     //2 check xem update o cho nao
+     if (objectParams.product_attributes) {
+      // update child
+        await updateProductbyId({productId,  payload : updateNestedObjectParser(objectParams.product_attributes)  , model : electronicModel});
+     }
+
+     const updatedProduct = await super.updateProduct(productId, updateNestedObjectParser(objectParams));
+     return updatedProduct;
+
   }
 }
 

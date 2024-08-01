@@ -85,6 +85,20 @@ class ProductController {
     }
 
     /// END QUERY ///
+
+
+    /// PUT, PATCH
+    updateProduct = async (req,res,next) => {
+        new SuccessResponse({
+            message : "UPDATE PRODUCT Succcess",
+            metadata : await ProductService.updateProduct(req.body.product_type, req.params.productId ,{
+                ...req.body,
+                product_shop : req.user.userId
+            })
+        }).send(res);
+    }
+
+    /// END PUT, PATCH
 };
 
  module.exports = new ProductController()
