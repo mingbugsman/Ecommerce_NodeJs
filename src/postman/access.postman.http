@@ -34,9 +34,10 @@ POST {{url_dev}}/shop/handlerRefreshToken
 Content-Type: application/json
 x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
 x-client-id : 669f804f4b16a95c37bec2cc
-authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjE4MzUyMTAsImV4cCI6MTcyMjAwODAxMH0.lM0GSkTnMpejPVl3Q988Ebik2W8dZZgthvhXPf-6HmI
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjI2OTk0NDgsImV4cCI6MTcyMjg3MjI0OH0.oWsB_33jHARB40ICxTY1fwEh9OjsC9RRxooJgS-vxiE
+
 {
-    "refreshToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjE4MzUyMTAsImV4cCI6MTcyMjQ0MDAxMH0.WLAORd4yULqCDsjScKAZZ9wizxl-kpF1lgYvYuX_uDM"
+    "refreshToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjI2OTk0ODcsImV4cCI6MTcyMzMwNDI4N30.tjAUd2eQ0Hm0rboPnm_tEpyGSPAtxtk6OE4jBJq_7bA"
 }
 
 ###
@@ -44,20 +45,40 @@ POST {{url_dev}}product
 Content-Type: application/json
 x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
 x-client-id : 669f804f4b16a95c37bec2cc
-authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjIyNjMwMzMsImV4cCI6MTcyMjQzNTgzM30.BvrlP7s-AaOlz6UaASuYkFfM7LAp8OlAFRuQ7Av7i6I
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjI2OTk0ODcsImV4cCI6MTcyMjg3MjI4N30.9M0d_jZeHk2TKE6rRhQo2aFJ1CoRY_mXqqa3s7HCUQY
 
 {
-    "product_name": "Quần jean tươi đẹp",
-    "product_description": "Đồng hồ đeo tay sành điệu cực vjp pro",
-    "product_price": 5000,
+    "product_name": "Giày chạy bộ với tốc độ vũ trụ",
+    "product_description": "Giày giúp hỗ trợ người chạy bộ với tốc độ siêu thanh, người chạy sẽ cảm thấy mát mẻ",
+    "product_price": 12000,
     "product_type": "Clothing",
     "product_thumbal": "product_thumb",
-    "product_quantity": 32000,
+    "product_quantity": 100,
     "product_attributes": {
         "brand": "TuanMinh's MITH",
-        "size": "XL",
-        "material": "Black Hole"
+        "size": "41",
+        "material": "Dark Matter"
     } 
+}
+
+
+###
+PATCH {{url_dev}}product/66a7a6811209ed4595991150
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+x-client-id : 669f804f4b16a95c37bec2cc
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjI1MzA5NDMsImV4cCI6MTcyMjcwMzc0M30.heMVJnMb6X9H0z80G9pfiQY3eHyIHey9zb4c3rsbmyQ
+
+{
+    "product_name": "Quần jean xấu",
+    "product_description": "Đồng hồ đeo tay sành điệu cực vjp pro, trong từng chi tiết",
+    "product_price": 5000,
+    "product_type": "Clothing",
+    "product_attributes": {
+        "brand": "TuanMinh's MITH",
+        "material": "Black Suns"
+    } ,
+    "product_ratingAverage" :null
 }
 ###
 POST {{url_dev}}product/publish/66a7a6811209ed4595991150
@@ -94,3 +115,15 @@ authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjR
 GET {{url_dev}}product/search/quanjean
 Content-Type: application/json
 x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+
+
+###
+GET {{url_dev}}product/
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+
+###
+GET {{url_dev}}product/66a663070373dd35185956bb
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+
