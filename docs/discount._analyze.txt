@@ -1,0 +1,35 @@
+Stategry of discount
+
+1. Types of Discounts
+Fixed Amount Discount: A fixed amount is deducted from the total purchase price.
+Percentage Discount: A discount based on a percentage of the total purchase price.
+Product-Specific Discount: Discounts applied to specific products or categories.
+Quantity Discount: Discounts given when purchasing a certain quantity of items.
+Time-Limited Discount: Discounts that are only available during a specific period.
+
+2. Conditions for Discounts
+Minimum Order Value: The order must reach a minimum value to qualify for the discount.
+Minimum Quantity: The number of items in the cart must meet a certain threshold.
+New Customers: Discounts applicable only to first-time customers.
+Loyal Customers: Discounts for customers who have made multiple purchases.
+Event-Based Discounts: Discounts for special events like Black Friday, Christmas, etc.
+
+3. Application Methods
+Coupon Codes: Customers enter a code to receive the discount.
+Automatic Application: The system automatically applies the discount when conditions are met.
+
+4. Discount Management
+Creation and Editing: Interface for administrators to create and modify discount programs.
+Validity Period Management: Setting start and end dates for discounts.
+Usage Limits: Limiting the number of times a discount code can be used.
+Reporting and Analysis: Tracking the effectiveness of discount programs.
+
+5. Integration with Other Systems
+Shopping Cart: Integration to display the price after the discount is applied.
+Checkout Process: Calculating discounts during the payment process.
+Customer Notifications: Informing customers about new discount programs.
+
+6. Security and Validation
+Coupon Code Validation: Ensuring the discount code is valid and not expired.
+Condition Verification: Validating that the discount conditions are met.
+Fraud Prevention: Preventing the misuse of discount codes.

@@ -24,7 +24,7 @@ const discountModel = new Schema({
     discount_is_Active : { type : Boolean, default : true },
     discount_applies_to : {type : String, required : true, enum : ['all', 'specific']},
     discount_product_ids : {type : Array , default : []} //  The product has a discount code applied  
-    
+    //16
 }, {
     timestamps : true,
     collection : COLLECTION_NAME

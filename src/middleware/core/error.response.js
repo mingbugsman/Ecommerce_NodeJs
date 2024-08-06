@@ -57,10 +57,20 @@ class FORBIDDENERROR extends ErrorResponse {
   }
 }
 
+class ErrorDiscount extends ErrorResponse {
+  constructor(
+    message = reasonPhrases.BAD_REQUEST,
+    status = statusCodes.BAD_REQUEST
+  ) {
+    super(message,status);
+  }
+}
+
 module.exports = {
   ConflictRequestError,
   BadRequestError,
   AuthFailureError,
   NOTFOUNDERROR,
-  FORBIDDENERROR
+  FORBIDDENERROR,
+  ErrorDiscount
 };
