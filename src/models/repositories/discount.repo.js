@@ -9,6 +9,13 @@ const findDiscount = async ({code, shopId}) => {
     }).lean();
 }
 
+const deleteDiscount = async ({codeId, shopId}) => {
+    return await discountModel.findOneAndDelete({
+        discount_code : codeId,
+        discount_shopId : convertToObjectID(shopId)
+    })
+}
+
 const createDiscount = async ({
     name, description, type, value, code,
     start_date, end_date, max_using, uses_count,
@@ -66,6 +73,7 @@ const findAllDiscountCodeselect = async ({limit = 50
 module.exports = {
     findDiscount,
     createDiscount,
+    deleteDiscount,
     findAllDiscountCodeUnselect,
     findAllDiscountCodeselect
 }

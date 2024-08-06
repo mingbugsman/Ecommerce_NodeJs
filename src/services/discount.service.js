@@ -5,10 +5,13 @@ const {
   NOTFOUNDERROR,
   ErrorDiscount
 } = require("../middleware/core/error.response");
+const discountModel = require("../models/discount.model");
 
 const {
   findDiscount,
   createDiscount,
+  deleteDiscount,
+  findAllDiscountCodeUnselect
 } = require("../models/repositories/discount.repo");
 const { findAllProducts } = require("../models/repositories/product.repo");
 const { convertToObjectID } = require("../utils");
@@ -130,7 +133,7 @@ class DiscountService {
    */
   static async getAllDiscountCodesByShop({ limit, page, shopId }) {
     const discounts = await findAllDiscountCodeUnselect({
-      limit: +limt,
+      limit: +limit,
       page: +page,
       filter: {
         discount_shopId: shopId,
@@ -189,4 +192,31 @@ class DiscountService {
     }
 
   }
+
+  static async deleteDiscount({codeId, shopId}) {
+    const deleted = deleteDiscount({codeId, shopId});
+    return deleted;
+  }
+
+  static async cancelDiscount({codeId, shopId, userId }) {
+    const foundDiscount = findDiscount({codeId, shopId});
+    
+    if (!foundDiscount) throw new NOTFOUNDERROR('Not found discount');
+
+    const result = await discountModel.findByIdAndUpdate(foundDiscount._id, {
+      $pull : {
+        discount_user_used : userId
+      },
+      $inc : {
+        discount_max_using : 1,
+        discount_uses_count : -1
+      }
+    })
+
+    return result;
+  }
+
+
 }
+ 
+module.exports = DiscountService
