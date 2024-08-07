@@ -176,7 +176,9 @@ class DiscountService {
       (acc, product) => acc + product.quantity * product.price,
       0
     );
+
     console.log(totalOrder);
+
     // caculate total discount value for every discount in req.body.discountCode (array discount)
     let totalDiscount = 0;
 
@@ -225,7 +227,6 @@ class DiscountService {
       totalDiscount += discountAmount;
 
       // Reduce total order value by discount amount for the next discount calculation
-      totalOrder -= discountAmount;
     }
 
     return {

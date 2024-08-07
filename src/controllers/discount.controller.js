@@ -68,7 +68,7 @@ class DiscountController {
                 ...req.body
             })
         }).send(res);
-    }
+    } // ok
 
     /// END QUERY ///
 
