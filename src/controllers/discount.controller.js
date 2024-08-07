@@ -12,11 +12,11 @@ class DiscountController {
         new SuccessResponse({
             message : 'Successfully create new discount',
             metadata : await DiscountService.createDiscountCode({
-                ...req.query,
+                ...req.body,
                 shopId : req.user.userId
             })
         }).send(res);
-    }
+    } // ok
     
     deleteDiscount = async (req,res, next) => {
         new SuccessResponse({
@@ -32,40 +32,40 @@ class DiscountController {
           new SuccessResponse({
             message: 'Successfully canceled discount code',
             metadata: await DiscountService.cancelDiscount({
-                codeId: req.params.codeId,
+                codeId: req.body.codeId,
                 shopId: req.user.userId,
-                userId: req.user.userId
+                userId: req.body.userId
               })
           }).send(res);
       }
 
     ////QUERY
+    
     getAllDiscountCodes = async (req,res, next) => {
         new SuccessResponse({
             message : 'Successfully get all discount codes',
             metadata : await DiscountService.getAllDiscountCodesByShop({
-                ...req.query,
-                shopId : req.user.userId
+                ...req.query
             })
         }).send(res);
-    }
+    } // ok
     
     getAllDiscountCodesWithProducts = async (req,res, next) => {
+     // console.log(req.query);
         new SuccessResponse({
             message : 'Successfully get all discount codes',
             metadata : await DiscountService.getAllDiscountCodeWithProduct({
-                ...req.body,
-                shopId : req.user.userId
+                ...req.query
             })
         }).send(res);
-    }
+    } // ok
 
     getDiscountAmount = async (req,res, next) => {
+       //console.log(req.body);
         new SuccessResponse({
-            message : 'Successfully get all discount codes',
-            metadata : await DiscountService.getAllDiscountCodesByShop({
-                ...req.query,
-                shopId : req.user.userId
+            message : 'product cost after using discount',
+            metadata : await DiscountService.getDiscountAmount({
+                ...req.body
             })
         }).send(res);
     }
@@ -74,7 +74,15 @@ class DiscountController {
 
 
     /// PUT, PATCH
-   
+   updateDiscount = async (req,res,next) => {
+        new SuccessResponse({
+            message : 'Successfully update discount',
+            metadata : await DiscountService.updateDiscountCode(req.body, {
+                ...req.body,
+                discount_shopId : req.user.userId
+            })
+        })
+   }
 
     /// END PUT, PATCH
 };

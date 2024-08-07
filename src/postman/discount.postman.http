@@ -1,0 +1,52 @@
+@url_dev=http://localhost:3000/v1/api/discount
+
+
+###
+GET {{url_dev}}/list_product_code?codeId=SHOP-1122&shopId=669f804f4b16a95c37bec2cc&limit=50&page=1
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+
+###
+GET {{url_dev}}/list_discount_shop?shopId=669f804f4b16a95c37bec2cc&limit=50&page=1
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+
+###
+POST {{url_dev}}/amount
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+Content-Type: application/json
+
+{
+    "discountCodes" : ["SHOP-1122","SHOP-1144"], // discount code
+    "userId" : 1,
+    "shopId" : "669f804f4b16a95c37bec2cc",
+    "products" : [
+        { "productId" : "66a663070373dd35185956bb",
+        "price" : 300000,
+        "quantity" : 5 
+    }]
+}
+
+###
+POST {{url_dev}} 
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+x-client-id : 669f804f4b16a95c37bec2cc
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjMwMTYzNDAsImV4cCI6MTcyMzE4OTE0MH0.mqIkRmnPyQ4q8bXpCKzv2h17dzW5WYe2LhMGFln8i-4
+
+{
+    "name" : "name percentage amount",
+    "description" : "sale 10% shopee 8/8",
+    "type" : "percentage",
+    "value" : 15,
+    "code" : "SHOP-1144",
+    "start_date" : "2024-08-07 13:53:00",
+    "end_date" : "2024-08-18 13:53:00",
+    "max_using" : 100,
+    "uses_count" : 0,
+    "user_used" : [],
+    "max_uses_per_user" : 1,
+    "min_order_value" : 200000,
+    "created_by" : {},
+    "is_Active" : true,
+    "applies_to" : "all",
+    "product_ids" : ["66a663070373dd35185956bb"]
+}

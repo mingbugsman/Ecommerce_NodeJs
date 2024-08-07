@@ -2,9 +2,10 @@ const { convertToObjectID } = require("../../utils")
 const discountModel = require("../discount.model")
 
 
-const findDiscount = async ({code, shopId}) => {
+const findDiscount = async ({codeId, shopId}) => {
+   console.log("parameters:::",codeId,shopId)
     return await discountModel.findOne({
-        discount_code : code,
+        discount_code : codeId,
         discount_shopId : convertToObjectID(shopId)
     }).lean();
 }
@@ -70,10 +71,15 @@ const findAllDiscountCodeselect = async ({limit = 50
       return discounts
 }
 
+const updateDiscount = async({codeId,payload, model, isNew = true}) => {
+    return await model.findByIdAndUpdate(convertToObjectID(codeId),payload, {new : isNew});
+}
+
 module.exports = {
     findDiscount,
     createDiscount,
     deleteDiscount,
     findAllDiscountCodeUnselect,
-    findAllDiscountCodeselect
+    findAllDiscountCodeselect,
+    updateDiscount
 }
