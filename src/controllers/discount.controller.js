@@ -4,6 +4,7 @@
 
 const {SuccessResponse} = require("../middleware/core/success.response");
 const DiscountService = require("../services/discount.service");
+const { convertToObjectID } = require("../utils");
 
 
 class DiscountController {
@@ -19,6 +20,7 @@ class DiscountController {
     } // ok
     
     deleteDiscount = async (req,res, next) => {
+      
         new SuccessResponse({
             message : 'Successfully delete discount',
             metadata : await DiscountService.deleteDiscount({
@@ -35,9 +37,9 @@ class DiscountController {
                 codeId: req.body.codeId,
                 shopId: req.user.userId,
                 userId: req.body.userId
-              })
+            })
           }).send(res);
-      }
+      } // ok
 
     ////QUERY
     
@@ -75,14 +77,16 @@ class DiscountController {
 
     /// PUT, PATCH
    updateDiscount = async (req,res,next) => {
+        console.log(req.body, req.params);
         new SuccessResponse({
             message : 'Successfully update discount',
-            metadata : await DiscountService.updateDiscountCode(req.body, {
+            metadata : await DiscountService.updateDiscountCode({
                 ...req.body,
-                discount_shopId : req.user.userId
+                discount_shopId : convertToObjectID(req.user.userId),
+                idDiscount : convertToObjectID(req.params.id_discount)
             })
-        })
-   }
+        }).send(res);
+   } // ok
 
     /// END PUT, PATCH
 };

@@ -17,7 +17,7 @@ const discountModel = new Schema({
     discount_end_date : {type : Date, required : true}, // ngay ket thuc ma giam gia
     discount_max_using : {type : Number, required: true}, // so luong discount duoc ap dung
     discount_uses_count : {type : Number, required : true}, // Discount quantity used
-    discount_user_used : {type :Array, default : []}, // Store users who have used the discount
+    discount_user_used : {type :Array, default : [1,2,3]}, // Store users who have used the discount
     discount_max_uses_per_user : { type : Number, required : true }, // Maximum discount allowed for users to use
     discount_min_order_value : {type : Number, required : true}, 
     discount_shopId : {type : Schema.Types.ObjectId, ref : 'Shop'},

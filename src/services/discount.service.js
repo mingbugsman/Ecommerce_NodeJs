@@ -14,6 +14,7 @@ const {
   findAllDiscountCodeUnselect,
   findAllDiscountCodeselect,
   updateDiscount,
+  findDiscountbyId,
 } = require("../models/repositories/discount.repo");
 const { findAllProducts } = require("../models/repositories/product.repo");
 const { convertToObjectID, removeUndefinedObject } = require("../utils");
@@ -90,23 +91,27 @@ class DiscountService {
 
   static async updateDiscountCode(data) {
     // update discount
-    const { discount_code, discount_shopId } = data;
-    const foundDiscount = await findDiscount({
-      discount_code,
-      discount_shopId,
+    const { idDiscount, discount_shopId } = data;
+    const foundDiscount = await findDiscountbyId({
+      id : idDiscount,
+      shopId : discount_shopId,
     });
-
+   
     if (!foundDiscount || !foundDiscount.discount_is_Active) {
       throw new NOTFOUNDERROR("discount not exists");
     }
+    
     // update discount
     const dataWithoutUndefined = removeUndefinedObject(data);
+    console.log(dataWithoutUndefined);
     const newUpdateDiscount = updateDiscount({
-      codeId: discount_code,
+      id_discount: idDiscount,
       payload: dataWithoutUndefined,
       model: discountModel,
     });
+
     return newUpdateDiscount;
+
   }
 
   static async getAllDiscountCodeWithProduct({
@@ -168,7 +173,13 @@ class DiscountService {
     return discounts;
   }
 
-  // GET DISCOUNT AMOUNT
+  /**
+   * Apply multiple discounts to a single purchase
+   * @param {Array} discountCodes - Array of discount codes
+   * @param {String} shopId - Shop ID
+   * @param {Array} products - List of products with quantity and price
+   * @param {String} userId - User ID
+   */
   static async getDiscountAmount({ discountCodes, userId, shopId, products }) {
 
     //get total original discount amount 
@@ -244,7 +255,7 @@ class DiscountService {
 
   static async cancelDiscount({ codeId, shopId, userId }) {
     //CANCEL DISCOUNT
-    const foundDiscount = findDiscount({ codeId, shopId });
+    const foundDiscount = await findDiscount({ codeId, shopId });
 
     if (!foundDiscount) throw new NOTFOUNDERROR("Not found discount");
 
@@ -257,8 +268,7 @@ class DiscountService {
         discount_uses_count: -1,
       },
     });
-
-    return result;
+    return await findDiscount({ codeId, shopId });
   }
 }
 

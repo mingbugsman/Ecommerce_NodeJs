@@ -10,7 +10,7 @@ const getInfoData = ({fields = [], object = {} }) => {
 
 const removeUndefinedObject = (obj) => {
     Object.keys(obj).forEach( k => {
-        if (obj[k] == null) {
+        if (obj[k] === null || obj[k] === undefined) {
             delete obj[k];
         }
     })
