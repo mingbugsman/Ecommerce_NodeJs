@@ -1,0 +1,50 @@
+@url_dev=http://localhost:3000/v1/api/cart
+
+
+###
+POST {{url_dev}}
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+Content-Type: application/json
+
+{
+    "userId" : 11,
+    "product" : {
+        "productId" : "66a663070373dd35185956bb",
+        "shopId" : "669f804f4b16a95c37bec2cc",
+        "quantity" : 4,
+        "name" : "quần bó mát mẻ",
+        "price" : 300
+    }
+}
+
+
+###
+GET {{url_dev}}
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+Content-Type: application/json
+
+{
+    "userId" : 11
+}
+
+
+
+###
+DELETE {{url_dev}}
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+Content-Type: application/json
+
+{
+    "userId" : 11,
+    "productId" : "66a663070373dd35185956bb"
+}
+
+
+### 
+PATCH {{url_dev}}/update
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+Content-Type: application/json
+
+{
+
+}

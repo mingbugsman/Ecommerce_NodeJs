@@ -89,3 +89,4 @@ authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjR
     "discount_max_uses_per_user" : 1,
     "discount_min_order_value" : null
 }
+

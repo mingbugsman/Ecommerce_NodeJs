@@ -71,7 +71,7 @@ class DiscountController {
             })
         }).send(res);
     } // ok
-
+    
     /// END QUERY ///
 
 
@@ -87,8 +87,9 @@ class DiscountController {
             })
         }).send(res);
    } // ok
-
     /// END PUT, PATCH
+
+
 };
 
  module.exports = new DiscountController()

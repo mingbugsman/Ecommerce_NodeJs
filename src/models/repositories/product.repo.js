@@ -7,6 +7,8 @@ const {
   electronicModel,
 } = require("../product.model");
 
+const { convertToObjectID } = require('../../utils')
+
 const findAllDraftsForShop = async ({ query, limit, skip }) => {
   return await queryProduct({ query, limit, skip });
 };
@@ -93,6 +95,10 @@ const updateProductbyId = async ({
   return await model.findByIdAndUpdate(product_id,payload, {new : isNew});
 }
 
+const getProductById = async ({product_id}) => {
+  return await productModel.findOne({_id : convertToObjectID(product_id) }).lean();
+}
+
 module.exports = {
   findAllDraftsForShop,
   findAllPublishsForShop,
@@ -101,5 +107,6 @@ module.exports = {
   searchProductbyUser,
   findAllProducts,
   findProduct,
-  updateProductbyId
+  updateProductbyId,
+  getProductById
 };
