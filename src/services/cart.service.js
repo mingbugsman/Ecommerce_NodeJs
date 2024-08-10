@@ -13,7 +13,8 @@
 
 const { findUserCart, updateOrcreateCart, updateUserCartQuantity, deleteCart, getAllListProductUserCart } = require("../models/repositories/cart.repo");
 const { getProductById } = require("../models/repositories/product.repo");
-const {NOTFOUNDERROR} = require('../middleware/core/error.response')
+const {NOTFOUNDERROR} = require('../middleware/core/error.response');
+const { convertToObjectID } = require("../utils");
 
 
 class CartService {
@@ -52,8 +53,8 @@ class CartService {
         return await updateOrcreateCart({query,updateOrInsert, options});
     }
 
-    static async addToCartV2({userId, product= {}}) {
-        const { productId, quantity, old_quantity} = shop_order_ids[0]?.item_products[0];
+    static async addToCartV2({userId, shop_order_ids= []}) {
+        const {  productId, quantity, old_quantity} = shop_order_ids[0]?.item_products[0];
 
         const foundProduct = await getProductById({
             product_id : productId
@@ -69,11 +70,11 @@ class CartService {
             // deleted 
 
         }
-
-        return await CartService.updateUserCartQuantity({
+        
+        return await updateUserCartQuantity({
             userId : userId,
             product : {
-                productId,
+                productId :convertToObjectID(productId),
                 quantity : quantity - old_quantity
             }
         })
