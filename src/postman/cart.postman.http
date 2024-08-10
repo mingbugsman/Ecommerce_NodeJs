@@ -46,5 +46,21 @@ x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c6
 Content-Type: application/json
 
 {
+    "userId" : 11,
+    "shop_order_ids" : [
+        {
+            "shopId" : "669f804f4b16a95c37bec2cc",
+            "item_products" : [
+                {
+                    "productId" : "66a663070373dd35185956bb",
+                    "quantity" : 2,
+                    "old_quantity" : 1,
+                    "shopId"   : "669f804f4b16a95c37bec2cc",
+                    "price" : 300
+                }
+            ],
+            "version" : 200
 
+        }
+    ]
 }
