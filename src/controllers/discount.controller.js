@@ -9,7 +9,7 @@ const { convertToObjectID } = require("../utils");
 
 class DiscountController {
     createDiscount = async (req,res,next) => {
-        console.log(req.body);
+
         new SuccessResponse({
             message : 'Successfully create new discount',
             metadata : await DiscountService.createDiscountCode({

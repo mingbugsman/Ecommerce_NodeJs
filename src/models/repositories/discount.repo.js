@@ -43,6 +43,7 @@ const createDiscount = async ({
   applies_to,
   product_ids,
 }) => {
+  console.log(user_used);
   return await discountModel.create({
     discount_name: name,
     discount_description: description,

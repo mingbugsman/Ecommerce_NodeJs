@@ -26,7 +26,7 @@ const productSchema = new Schema({
     type: String,
     required: true,
     enum: ['Electronic', 'Clothing', 'Furniture']  // Corrected enum definition
-},
+  },
   product_quantity: {
     type: Number,
     required: true,

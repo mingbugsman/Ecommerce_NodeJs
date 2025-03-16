@@ -50,6 +50,7 @@ const authentication = asyncHandler(async (req,res,next) => {
    //1
    const iduser = req.headers[HEADERS.CLIENT_ID];
    if (!iduser) throw new AuthFailureError("Invalid request headers client id");
+   
    //2
    const keyStore = await KeyTokenService.findbyId(iduser);
    if (!keyStore) {
@@ -59,7 +60,7 @@ const authentication = asyncHandler(async (req,res,next) => {
    //3 
    const accessToken = req.headers[HEADERS.AUTHORIZATION];
    if (!accessToken) throw new AuthFailureError("Invalid Request no accesstoken");
-
+   
 
 
    try {
@@ -70,9 +71,11 @@ const authentication = asyncHandler(async (req,res,next) => {
 
         req.keyStore = keyStore;
         req.user = decodedUser
+        console.log("Đã hoàn tất xác thực")
         return next();
 
    } catch (error) {
+        console.log(error)
         throw error
    }
 

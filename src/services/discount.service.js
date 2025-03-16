@@ -53,7 +53,7 @@ class DiscountService {
     } = payload; // 16
 
     if (new Date() < new Date(start_date) || new Date() > new Date(end_date)) {
-      throw new BadRequestError("DISCOUNT CODE HAS EXPRIED");
+      throw new BadRequestError("DISCOUNT CODE HAS EXPIRED");
     }
 
     if (new Date(start_date) >= new Date(end_date)) {
@@ -66,7 +66,7 @@ class DiscountService {
     if (foundDiscount && foundDiscount.is_Active) {
       throw new BadRequestError("Discount exists");
     }
-
+ 
     const newDiscount = createDiscount({
       name,
       description,
@@ -209,7 +209,6 @@ class DiscountService {
         discount_type,
         discount_value,
       } = foundDiscount;
-
       if (!discount_is_Active)
         throw new NOTFOUNDERROR(`Discount code ${codeId} has expired`);
       if (!discount_max_using)

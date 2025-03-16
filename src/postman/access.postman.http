@@ -12,7 +12,7 @@ x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c6
 }
 
 ###
-POST {{url_dev}}/shop/login
+POST {{url_dev}}shop/login
 Content-Type: application/json
 x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
 

@@ -1,0 +1,5 @@
+1. Create new order (user)
+2. query orders [user]
+3. query order using it's Id [USER]
+4. cancel order
+5. update order status [admin]

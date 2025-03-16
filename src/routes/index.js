@@ -13,6 +13,7 @@ router.use(apiKey);
 router.use(checkPermission('0000'))
 
 // SAU KHI CHECK THÌ CHECK CHO NGƯỜI DÙNG
+router.use('/v1/api/order', require('./checkout'));
 router.use('/v1/api/cart', require('./cart'))
 router.use('/v1/api/discount', require('./discount'));
 router.use('/v1/api/product', require('./product'));
