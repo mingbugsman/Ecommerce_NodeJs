@@ -4,7 +4,8 @@ const { BadRequestError } = require("../middleware/core/error.response");
 const { findCartById } = require("../models/repositories/cart.repo");
 const { checkProductByServer } = require("../models/repositories/product.repo");
 const DiscountService = require("./discount.service");
-
+const { acquiredLock, releaseLock } = require("./redis.service");
+const OrderModel = require('../models/order.model');
 class CheckOutService {
     // login and without login
     /* payload from FE
@@ -102,7 +103,8 @@ class CheckOutService {
                         });
                     totalDiscount += discountAmount;
                 }
-                checkout_order.totalDiscount += totalDiscount; 
+                checkout_order.totalDiscount += totalDiscount;
+ 
                 if (totalDiscount > 0) {
                     itemCheckout.priceApplyDiscout = checkoutPrice - totalDiscount;
                 }
@@ -117,6 +119,68 @@ class CheckOutService {
             checkout_order
         }
     }
+
+    static async orderByUser({
+        shop_order_ids,
+        cartId,
+        userId,
+        user_address = {},
+        user_paymant = {}
+    }) {
+        const {shop_order_ids_new, checkout_order} = await this.CheckoutReview({
+            cartId,
+            userId,
+            shop_order_ids
+        });
+        // Check again if inventory is exceeded
+        // get new array products
+        const products = shop_order_ids_new.flatMap(order => order.item_products);
+        console.log(`[1] : `, products);
+        const accquireProduct = [];
+        for (let i = 0; i < products.length; i++) {
+            const {productId, quantity} = products[i];
+            const keyLock = await acquiredLock(productId, quantity, cartId);
+            accquireProduct.push(keyLock ? true : false);
+            if (keyLock) {
+                await releaseLock(keyLock);
+            }
+        }
+        // check if exist one product run out in inventory
+         if (accquireProduct.includes(false)) {
+            throw new BadRequestError("Một số sản phẩm đã được cập nhật, vui lòng quay lại giỏ hàng...");
+         }
+         const newOrder = await OrderModel.create({
+            order_userId: userId,
+            order_checkout: checkout_order,
+            order_shipping : user_address,
+            order_payment: user_paymant,
+            order_products: shop_order_ids_new
+         })
+         // if successfully inserted order then remove product in cart  
+         if (newOrder) {
+
+         }  
+         return newOrder; 
+    }
+
+    static async getOrdersByUser() {
+
+    }
+
+    static async getOneOrderByUser() {
+
+    }
+
+    // cencel order order [user]
+    static async cancelOrderByUser() {
+
+    }
+
+    // shop or admin
+    static async updateOrderByAdmin() {
+
+    }
+    
 }
 
 module.exports = CheckOutService
