@@ -1,10 +1,10 @@
 'use strict'
 const {Client, GatewayIntentBits} = require('discord.js')
+
 const {
     CHANNELID_DISCORD,
-    TOKEN_DISCORD
+    TOKEN_DISCORD,
 } = process.env
-
 class LoggerService {
     constructor() {
         this.client = new Client({

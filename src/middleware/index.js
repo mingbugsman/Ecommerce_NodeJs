@@ -1,7 +1,7 @@
 'use strict'
 
 const Logger = require('../logger/discord.log')
-
+const ChatGPT = require('../logger/discord.chatgpt')
 const pustToLogDiscord = async (req,res,next) => {
     try {
         Logger.sendToFormatCode({
@@ -14,7 +14,16 @@ const pustToLogDiscord = async (req,res,next) => {
         next(error)
     }
 }
+/*
+const askChatGPT = async (req,res,next) => {
+    try {
+        ChatGPT.askChatGPT(req.body)
+        return next()
+    } catch (error) {
+        next(error)
+    }
+}*/
 
 module.exports = {
-    pustToLogDiscord
+    pustToLogDiscord,
 }

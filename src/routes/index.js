@@ -1,5 +1,6 @@
 'use strict'
 
+require('../logger/discord.chatgpt')
 const express = require('express');
 const router = express.Router();
 
