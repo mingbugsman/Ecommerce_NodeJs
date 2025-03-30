@@ -1,0 +1,26 @@
+@url_dev =http://localhost:3000/v1/api/
+###
+
+POST {{url_dev}}comment
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+x-client-id : 669f804f4b16a95c37bec2cc
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3NDMzNTIwNTAsImV4cCI6MTc0MzUyNDg1MH0.SnWtA2Gv8n_QNn_aGq0f8llYmPFwZBgOMC-CNIXiHc0
+
+{
+    "productId" : "67e97709aa03233fa5b2968a",
+    "userId" : 1001,
+    "content" : "san pham nay qua dep (1.2.2)",
+    "parentCommentId" :  "67e97f95519c318861138075"
+}
+
+
+###
+GET {{url_dev}}comment
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+
+{
+    "productId" : "67e97709aa03233fa5b2968a"
+}
+
