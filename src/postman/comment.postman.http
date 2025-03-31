@@ -21,6 +21,19 @@ Content-Type: application/json
 x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
 
 {
-    "productId" : "67e97709aa03233fa5b2968a"
+    "parentCommentId" : "67e97f66519c318861138059",
+    "productId" : "66a663070373dd35185956bb"
 }
 
+
+###
+DELETE {{url_dev}}comment
+Content-Type: application/json
+x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
+x-client-id : 669f804f4b16a95c37bec2cc
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3NDM0Mzc1NTYsImV4cCI6MTc0MzYxMDM1Nn0.A3SHit9tmYOovrObMvTqkMktSUQdmLqMedj8fnxVTVw
+
+{
+    "productId" : "66a663070373dd35185956bb",
+    "commentId" :  "67e97f66519c318861138059"
+}

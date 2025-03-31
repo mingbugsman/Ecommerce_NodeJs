@@ -8,10 +8,11 @@ const commentController = require('../../controllers/comment.controller');
 
 const router = express.Router();
 
-router.get('',asyncHandler(commentController.getComments))
+router.get('',asyncHandler(commentController.getCommentsByParentId))
 
 router.use(authentication);
 
 router.post('', asyncHandler(commentController.createNewComment));
+router.delete('', asyncHandler(commentController.deleteComment));
 
 module.exports = router;
