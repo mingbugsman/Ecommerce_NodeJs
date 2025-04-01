@@ -44,11 +44,11 @@ POST {{url_dev}}product
 Content-Type: application/json
 x-api-key : 4d117c7798bcde495042490f26002e8aa8b3d6615c7ae598c5b883a619c897cfc2c61985b9816fb2d85292c34b16af82b6936f9b4835920012dd2af052dae372
 x-client-id : 669f804f4b16a95c37bec2cc
-authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3MjI2OTk0ODcsImV4cCI6MTcyMjg3MjI4N30.9M0d_jZeHk2TKE6rRhQo2aFJ1CoRY_mXqqa3s7HCUQY
+authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3NDM1MjYxMjEsImV4cCI6MTc0MzY5ODkyMX0._SLXp3sY_t61JwWcevQvXN0KDpKu3aIPkltxIywESkc
 
 {
-    "product_name": "Giày chạy bộ với tốc độ vũ trụ",
-    "product_description": "Giày giúp hỗ trợ người chạy bộ với tốc độ siêu thanh, người chạy sẽ cảm thấy mát mẻ",
+    "product_name": "Fump cirno",
+    "product_description": "Fumo is super cute",
     "product_price": 12000,
     "product_type": "Clothing",
     "product_thumbal": "product_thumb",
