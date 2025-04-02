@@ -47,7 +47,7 @@ x-client-id : 669f804f4b16a95c37bec2cc
 authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmODA0ZjRiMTZhOTVjMzdiZWMyY2MiLCJlbWFpbCI6Im1pbmcxODM4MEBnbWFpbC5jb20iLCJpYXQiOjE3NDM1MjYxMjEsImV4cCI6MTc0MzY5ODkyMX0._SLXp3sY_t61JwWcevQvXN0KDpKu3aIPkltxIywESkc
 
 {
-    "product_name": "Fump cirno",
+    "product_name": "Fumo cirno",
     "product_description": "Fumo is super cute",
     "product_price": 12000,
     "product_type": "Clothing",
