@@ -16,6 +16,7 @@ router.use(apiKey);
 router.use(checkPermission('0000'))
 
 // SAU KHI CHECK THÌ CHECK CHO NGƯỜI DÙNG
+router.use('/v1/api/upload', require('./upload'))
 router.use('/v1/api/checkout', require('./checkout'));
 router.use('v1/api/inventory', require('./Inventory'))
 router.use('/v1/api/cart', require('./cart'))

@@ -15,6 +15,7 @@ const connectToRabbitMQ = async () => {
         console.error('error connecting to rabbitmq', error);
     }
 }
+
 const connectToRabbitMQForTest = async () => {
     try {
         const {channel, connection} = await connectToRabbitMQ();
@@ -31,7 +32,34 @@ const connectToRabbitMQForTest = async () => {
         console.error(`error connecting to RabbitMQ`, error)
     }
 }
+
+
+
+const consumerQueue = async (chanel, queueName) => {
+    try {
+        await chanel.assertQueue(queueName, {
+            durable: true
+        });
+
+        console.log("waiting for messages...");
+        chanel.consume(queueName, msg => {
+            console.log(`received message: ${queueName}: ${msg.content.toString()}`)
+            // 1. find users following shop
+            // 2. send message to use
+            // 3. if done, => success
+            // 4. else error => setup DLX...
+
+        }, {
+            noAck: true
+        })
+
+    } catch (error) {
+        console.log(`Error publish message to rabbitMQ ${error.message}`)
+    }
+}
+
 module.exports = {
     connectToRabbitMQ,
-    connectToRabbitMQForTest
+    connectToRabbitMQForTest,
+    consumerQueue
 }

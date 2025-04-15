@@ -15,9 +15,9 @@ app.use(helmet());
 app.use(compression());
 
 // test pub/sub redis
-require('../tests/inventory.test')
-const productTest = require('../tests/product.test')
-productTest.purchaseProduct('productId:001', 10)
+// require('../tests/inventory.test')
+// const productTest = require('../tests/product.test')
+// productTest.purchaseProduct('productId:001', 10)
 
 
 // init db
